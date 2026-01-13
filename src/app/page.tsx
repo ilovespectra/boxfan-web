@@ -1,0 +1,210 @@
+'use client';
+
+import Link from 'next/link';
+import { Download, Github, Smartphone } from 'lucide-react';
+
+export default function Home() {
+  const handleDownload = async () => {
+    try {
+      const response = await fetch('/api/download');
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'BoxFan.apk';
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error('Download failed:', error);
+      alert('Download failed. Please try again.');
+    }
+  };
+
+  return (
+    <div className="min-h-screen flex flex-col">
+      {/* Header */}
+      <header className="border-b border-slate-700 backdrop-blur-sm bg-slate-900/80 sticky top-0 z-50">
+        <div className="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center font-bold text-lg">
+              BF
+            </div>
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">
+              BoxFan
+            </h1>
+          </div>
+          <nav className="hidden md:flex gap-8">
+            <a href="#features" className="text-slate-300 hover:text-white transition-colors">
+              Features
+            </a>
+            <a href="#install" className="text-slate-300 hover:text-white transition-colors">
+              Installation
+            </a>
+            <a
+              href="https://github.com/ilovespectra/BoxFan"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-slate-300 hover:text-white transition-colors flex items-center gap-2"
+            >
+              <Github size={20} />
+              GitHub
+            </a>
+          </nav>
+        </div>
+      </header>
+
+      {/* Main Content */}
+      <main className="flex-1 max-w-6xl mx-auto w-full px-6 py-16 md:py-24">
+        {/* Hero Section */}
+        <section className="text-center mb-20">
+          <div className="mb-8 inline-block">
+            <div className="w-24 h-24 mx-auto bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl flex items-center justify-center text-4xl font-bold shadow-2xl">
+              🎵
+            </div>
+          </div>
+
+          <h2 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+            Sleep Better with{' '}
+            <span className="bg-gradient-to-r from-blue-400 to-blue-300 bg-clip-text text-transparent">
+              BoxFan
+            </span>
+          </h2>
+
+          <p className="text-xl text-slate-300 mb-12 max-w-2xl mx-auto leading-relaxed">
+            Experience soothing ambient fan noise with an integrated sleep timer. 
+            The perfect companion for relaxation and peaceful sleep.
+          </p>
+
+          {/* Download Button */}
+          <button
+            onClick={handleDownload}
+            className="btn-download hover:shadow-blue-500/50 mx-auto"
+          >
+            <span>
+              <Download size={24} />
+              Download .apk
+            </span>
+          </button>
+
+          <p className="text-sm text-slate-400 mt-4">
+            Android 8.0+ • ~10MB • Free
+          </p>
+        </section>
+
+        {/* Features Section */}
+        <section id="features" className="mb-20 grid md:grid-cols-3 gap-8">
+          <div className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-8 hover:border-blue-500/50 transition-colors">
+            <div className="text-3xl mb-4">🔊</div>
+            <h3 className="text-xl font-semibold mb-3">High-Quality Audio</h3>
+            <p className="text-slate-300">
+              Crystal-clear ambient fan noise for a calming experience
+            </p>
+          </div>
+
+          <div className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-8 hover:border-blue-500/50 transition-colors">
+            <div className="text-3xl mb-4">⏱️</div>
+            <h3 className="text-xl font-semibold mb-3">Smart Sleep Timer</h3>
+            <p className="text-slate-300">
+              Flexible hour and minute controls (0-23h, 0-59m)
+            </p>
+          </div>
+
+          <div className="bg-slate-800/50 backdrop-blur border border-slate-700 rounded-xl p-8 hover:border-blue-500/50 transition-colors">
+            <div className="text-3xl mb-4">🎚️</div>
+            <h3 className="text-xl font-semibold mb-3">Volume Control</h3>
+            <p className="text-slate-300">
+              Adjust volume with the slider or hardware buttons
+            </p>
+          </div>
+        </section>
+
+        {/* Installation Section */}
+        <section id="install" className="bg-slate-800/30 border border-slate-700 rounded-2xl p-10 mb-20">
+          <h3 className="text-3xl font-bold mb-8 flex items-center gap-3">
+            <Smartphone size={32} />
+            How to Install
+          </h3>
+
+          <div className="space-y-6">
+            <div className="flex gap-6">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold">
+                1
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-2">Download the APK</h4>
+                <p className="text-slate-300">
+                  Click the <span className="font-semibold text-blue-400">Download .apk</span> button above to download BoxFan.apk to your device
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-6">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold">
+                2
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-2">Transfer to Your Android Phone</h4>
+                <p className="text-slate-300">
+                  Send the BoxFan.apk file to your Android device via email, cloud storage, messaging app, or USB cable
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-6">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold">
+                3
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-2">Enable Unknown Sources</h4>
+                <p className="text-slate-300">
+                  On your Android device, go to <span className="font-mono bg-slate-900 px-2 py-1 rounded">Settings → Security → Unknown Sources</span> and enable it to install apps from outside the Play Store
+                </p>
+              </div>
+            </div>
+
+            <div className="flex gap-6">
+              <div className="flex-shrink-0 w-10 h-10 bg-blue-600 rounded-full flex items-center justify-center font-bold">
+                4
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold mb-2">Install</h4>
+                <p className="text-slate-300">
+                  Open the BoxFan.apk file on your Android device and tap <span className="font-semibold text-blue-400">Install</span>. The app will be ready to use!
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* GitHub Link */}
+        <section className="text-center bg-gradient-to-r from-slate-800 to-slate-900 rounded-2xl border border-slate-700 p-10">
+          <h3 className="text-2xl font-bold mb-4">Interested in the Source Code?</h3>
+          <p className="text-slate-300 mb-6">
+            BoxFan is open source. Check out the GitHub repository for more details.
+          </p>
+          <Link
+            href="https://github.com/ilovespectra/BoxFan"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 bg-slate-700 hover:bg-slate-600 px-6 py-3 rounded-lg transition-colors font-semibold"
+          >
+            <Github size={24} />
+            View on GitHub
+          </Link>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="border-t border-slate-700 bg-slate-900/50 mt-20">
+        <div className="max-w-6xl mx-auto px-6 py-8 text-center text-slate-400">
+          <p>BoxFan — Simple fan sounds for better sleep</p>
+          <p className="text-sm mt-2">
+            Built with ❤️ • Android 8.0+ Required
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}

@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  .btn-download {
+    @apply relative inline-block px-8 py-4 text-lg font-semibold text-white bg-gradient-to-r from-blue-600 to-blue-700 rounded-lg shadow-lg transition-all duration-300 overflow-hidden;
+  }
+
+  .btn-download::before {
+    @apply absolute inset-0 bg-gradient-to-r from-blue-700 to-blue-800 opacity-0 transition-opacity duration-300;
+    content: '';
+  }
+
+  .btn-download:hover::before {
+    @apply opacity-100;
+  }
+
+  .btn-download span {
+    @apply relative z-10 flex items-center gap-2;
+  }
+
+  .btn-download:hover {
+    @apply shadow-2xl scale-105;
+  }
+}
