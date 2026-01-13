@@ -6,16 +6,27 @@ import { Download, Github, Smartphone } from 'lucide-react';
 export default function Home() {
   const handleDownload = async () => {
     try {
-      const response = await fetch('/api/download');
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'BoxFan.apk';
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
+      // Check if it's a mobile device
+      const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      
+      if (isMobile) {
+        // For mobile, use direct link navigation
+        window.location.href = '/api/download';
+      } else {
+        // For desktop, use blob method
+        const response = await fetch('/api/download');
+        if (!response.ok) throw new Error('Failed to fetch APK');
+        
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'BoxFan.apk';
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      }
     } catch (error) {
       console.error('Download failed:', error);
       alert('Download failed. Please try again.');
