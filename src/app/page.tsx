@@ -6,7 +6,7 @@ import { Download, Github, Smartphone } from 'lucide-react';
 export default function Home() {
   const handleDownload = () => {
     // Direct download link - works on mobile and desktop
-    window.location.href = 'https://raw.githubusercontent.com/ilovespectra/BoxFan/main/app/build/outputs/apk/debug/app-debug.apk';
+    window.location.href = 'https://raw.githubusercontent.com/ilovespectra/BoxFan/main/releases/BoxFan.apk';
   };
 
   return (
