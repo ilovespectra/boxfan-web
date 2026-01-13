@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server';
 export async function GET() {
   try {
     // Download from GitHub raw content
-    const githubUrl = 'https://raw.githubusercontent.com/ilovespectra/BoxFan/main/app/build/outputs/apk/debug/app-debug.apk';
+    const githubUrl = 'https://raw.githubusercontent.com/ilovespectra/BoxFan/main/releases/BoxFan.apk';
     
     console.log('Fetching APK from:', githubUrl);
     const response = await fetch(githubUrl, {
