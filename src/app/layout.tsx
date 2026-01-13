@@ -4,6 +4,9 @@ import './globals.css';
 export const metadata: Metadata = {
   title: 'BoxFan - Ambient Sleep Timer',
   description: 'Download BoxFan: A lightweight Android app for ambient fan noise and sleep timer. Perfect for relaxation and better sleep.',
+  icons: {
+    icon: '/favicon.ico',
+  },
   openGraph: {
     title: 'BoxFan - Ambient Sleep Timer',
     description: 'Download the APK for your Android device',
