@@ -78,7 +78,7 @@ export default function Home() {
           </button>
 
           <p className="text-xs sm:text-sm text-slate-400 mt-3 sm:mt-4">
-            Android 8.0+ • ~10MB • Free
+            Android 8.0+ • ~17MB • Free
           </p>
         </section>
 
